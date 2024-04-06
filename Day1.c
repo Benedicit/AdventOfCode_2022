@@ -12,12 +12,12 @@ void part1() {
 
     while(fgets(buffer, bufferLength, stdin)) {
         currentLoad = strtol(buffer,NULL,10);
+        currentLoadSum += currentLoad;
         if(currentLoad == 0) {
             if (currentLoadSum > maxLoad)
                 maxLoad = currentLoadSum;
             currentLoadSum = 0;
         }
-        currentLoadSum += currentLoad;
     }
     printf("%i \n",maxLoad);
 
@@ -32,28 +32,36 @@ void part2() {
 
     while(fgets(buffer, bufferLength, stdin)) {
         currentLoad = strtol(buffer,NULL,10);
+        currentLoadSum += currentLoad;
         if(currentLoad == 0) {
             if (currentLoadSum > maxLoad[0]) {
-               if (currentLoadSum > maxLoad[1]) {
-                   if (currentLoadSum > maxLoad[2]) {
-                       maxLoad[2] = currentLoadSum;
-                   }
-               } else {
-                   maxLoad[1] = currentLoadSum;
-               }
-            } else {
+                int temp1 = maxLoad[0];
+                int temp2 = maxLoad[1];
                 maxLoad[0] = currentLoadSum;
+                maxLoad[1] = temp1;
+                maxLoad[2] = temp2;
+            } else {
+                if (currentLoadSum > maxLoad[1]) {
+                    int temp2 = maxLoad[1];
+                    maxLoad[1] = currentLoadSum;
+                    maxLoad[2] = temp2;
+                } else {
+                    if (currentLoadSum > maxLoad[2]) {
+                        maxLoad[2] = currentLoadSum;
+                    }
+                }
+
             }
             currentLoadSum = 0;
         }
-        currentLoadSum += currentLoad;
     }
     int result = 0;
-    for (int i=0; i<3; i++)
+    for (int i=0; i<3; i++) {
         result += maxLoad[i];
-    printf("%i \n",maxLoad[0]);
+        printf("%d\n", maxLoad[i]);
+    }
+    printf("%d\n",result);
 }
 int main() {
-    part1();
     part2();
 }
