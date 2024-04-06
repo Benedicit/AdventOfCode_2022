@@ -34,14 +34,17 @@ void part2() {
         currentLoad = strtol(buffer,NULL,10);
         if(currentLoad == 0) {
             if (currentLoadSum > maxLoad[0]) {
-                int temp = maxLoad[0];
-                int temp2 = maxLoad[1];
+               if (currentLoadSum > maxLoad[1]) {
+                   if (currentLoadSum > maxLoad[2]) {
+                       maxLoad[2] = currentLoadSum;
+                   }
+               } else {
+                   maxLoad[1] = currentLoadSum;
+               }
+            } else {
                 maxLoad[0] = currentLoadSum;
-                maxLoad[1] = temp;
-                maxLoad[2] = temp2;
             }
             currentLoadSum = 0;
-
         }
         currentLoadSum += currentLoad;
     }
