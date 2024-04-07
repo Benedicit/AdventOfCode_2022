@@ -1,5 +1,7 @@
 /Day1
-/.idea/misc.xml
-/.idea/vcs.xml
-/.idea/modules.xml
-/.idea/AdventOfCode_2022.iml
+/.DS_Store
+/.idea
+/cmake-build-debug
+/CMakeLists.txt
+/template.c
+/Day2
