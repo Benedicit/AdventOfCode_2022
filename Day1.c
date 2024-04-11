@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 
 void part1() {
@@ -63,5 +64,15 @@ void part2() {
     printf("%d\n",result);
 }
 int main() {
+    struct timespec begin, end;
+    clock_gettime(CLOCK_REALTIME, &begin);
+
+
     part2();
+
+    clock_gettime(CLOCK_REALTIME, &end);
+    long seconds = end.tv_sec - begin.tv_sec;
+    long nanoseconds = end.tv_nsec - begin.tv_nsec;
+    double time = (double) seconds + (double) nanoseconds*1e-9;
+    printf("%.5f\n",time);
 }
