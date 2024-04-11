@@ -46,6 +46,56 @@ void part1() {
 }
 
 void part2() {
+    char line[3][64];
+    int result = 0;
+    short notFinished = 1;
+    while (notFinished) {
+        for (int i = 0; i < 3; ++i) {
+            if (scanf("%s", line[i]) != 1) {
+                notFinished = 0;
+                break;
+            }
+        }
+        if (!notFinished)
+            break;
+
+        int length[3];
+        for (int i = 0; i < 3; ++i) {
+            length[i] = getStringLength(line[i], 64);
+        }
+        char currentChar;
+        for (int i = 0; i < length[0]; ++i) {
+            currentChar = line[0][i];
+            short found = 0;
+            for (int k = 0; k < length[1]; ++k) {
+                char test = line[1][k];
+                if (currentChar == test) {
+                    found = 1;
+                    break;
+                }
+            }
+            if (!found)
+                continue;
+            found = 0;
+            for (int k = 0; k < length[2]; ++k) {
+                char test = line[2][k];
+                if (currentChar == test) {
+                    found = 1;
+                    break;
+                }
+            }
+            if (found)
+                break;
+        }
+        int priority = (int) currentChar;
+        if (priority > 95) {
+            priority -= 96;
+        } else {
+            priority -= 38;
+        }
+        result += priority;
+    }
+    printf("%i\n", result);
 
 
 }
@@ -55,7 +105,7 @@ int main() {
     clock_gettime(CLOCK_REALTIME, &begin);
 
 
-    part1();
+    part2();
 
     clock_gettime(CLOCK_REALTIME, &end);
     long seconds = end.tv_sec - begin.tv_sec;
