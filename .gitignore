@@ -1,8 +1,8 @@
-/Day1
+/Executables/Day1
 /.DS_Store
 /.idea
 /cmake-build-debug
 /CMakeLists.txt
 /template.c
-/Day2
-/Day3
+/Executables
+/test.c
